@@ -1,10 +1,15 @@
-use anyhow::Result;
 use crate::utils;
-use docdiff::algorithm::document_distance;
+use anyhow::Result;
 use colored::*;
+use docdiff::algorithm::document_distance;
 
 pub fn run(original: &str, modified: &str) -> Result<()> {
-    println!("\n{} Comparing '{}' with '{}'...", "🔍".blue().bold(), original.green(), modified.green());
+    println!(
+        "\n{} Comparing '{}' with '{}'...",
+        "🔍".blue().bold(),
+        original.green(),
+        modified.green()
+    );
     let text_a = utils::read_file(original)?;
     let text_b = utils::read_file(modified)?;
 
@@ -31,7 +36,11 @@ pub fn run(original: &str, modified: &str) -> Result<()> {
     };
 
     println!("{}", "Result:".bold().underline());
-    println!("Document distance: {} (Similarity: {}%)", format!("{:.3}", distance).cyan(), format!("{:.0}", similarity).cyan());
+    println!(
+        "Document distance: {} (Similarity: {}%)",
+        format!("{:.3}", distance).cyan(),
+        format!("{:.0}", similarity).cyan()
+    );
     println!("{}\n", verdict.color(verdict_color).bold());
     Ok(())
 }

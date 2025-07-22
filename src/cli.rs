@@ -1,4 +1,3 @@
-
 use clap::{Parser, Subcommand};
 
 /// Docdiff CLI arguments and subcommands
@@ -25,4 +24,3 @@ pub enum Commands {
     /// Show information about the program.
     Info,
 }
-

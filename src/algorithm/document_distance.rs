@@ -31,9 +31,7 @@ pub fn document_distance(a: &str, b: &str) -> f64 {
 
     let dot_product: f64 = vec_a.iter().zip(vec_b.iter()).map(|(x, y)| x * y).sum();
 
-    let norm = |v: &[f64]| {
-        v.iter().map(|x| x * x).sum::<f64>().sqrt()
-    };
+    let norm = |v: &[f64]| v.iter().map(|x| x * x).sum::<f64>().sqrt();
 
     let norm_a = norm(&vec_a);
     let norm_b = norm(&vec_b);
