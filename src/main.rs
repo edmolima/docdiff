@@ -27,7 +27,7 @@ fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.command {
         Commands::Diff { original, modified } => {
-            println!("Comparing '{}' with '{}'...", original, modified);
+            println!("Comparing '{original}' with '{modified}'...");
             let pb = indicatif::ProgressBar::new(100);
             pb.inc(100);
             pb.finish_with_message("Comparison finished!");
