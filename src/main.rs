@@ -1,39 +1,37 @@
+
+mod cli;
+mod utils;
+mod algorithm;
+
 use anyhow::Result;
-use clap::{Parser, Subcommand};
-
-#[derive(Parser)]
-#[command(name = "docdiff")]
-#[command(about = "CLI tool for comparing documents", long_about = None)]
-struct Cli {
-    #[command(subcommand)]
-    command: Commands,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    /// Compare two text files
-    Diff {
-        /// Path to the original file
-        original: String,
-        /// Path to the modified file
-        modified: String,
-    },
-    /// Show information about the program
-    Info,
-}
 
 fn main() -> Result<()> {
-    let cli = Cli::parse();
-    match cli.command {
-        Commands::Diff { original, modified } => {
+    let matches = cli::build_cli().get_matches();
+    match matches.subcommand() {
+        Some(("diff", sub_m)) => {
+            let original = sub_m.get_one::<String>("original").expect("required");
+            let modified = sub_m.get_one::<String>("modified").expect("required");
+
             println!("Comparing '{original}' with '{modified}'...");
+
+            let text_a = utils::read_file(original)?;
+            let text_b = utils::read_file(modified)?;
+
             let pb = indicatif::ProgressBar::new(100);
             pb.inc(100);
             pb.finish_with_message("Comparison finished!");
+
+            let distance = algorithm::document_distance::document_distance(&text_a, &text_b);
+            println!("Document distance: {distance:.3}");
+            Ok(())
         }
-        Commands::Info => {
-            println!("docdiff v0.1.0 - CLI for document comparison");
+        Some(("info", _)) => {
+            println!("docdiff - Compare two files using document distance algorithms");
+            Ok(())
+        }
+        _ => {
+            cli::print_help();
+            Ok(())
         }
     }
-    Ok(())
 }

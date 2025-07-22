@@ -36,12 +36,15 @@ Download the latest release for your platform from [Releases](https://github.com
 
 ---
 
+
 ## Usage
 
-Compare two files:
+**Docdiff only works with plain text files (.txt).**
+
+Compare two text files:
 
 ```sh
-docdiff diff original.txt modified.txt
+docdiff diff file1.txt file2.txt
 ```
 
 Show program info:
