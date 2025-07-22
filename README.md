@@ -1,6 +1,17 @@
-
-
 # Docdiff
+
+<div align="center">
+  <!-- Badges -->
+  <a href="https://github.com/edmolima/docdiff/actions?query=workflow%3AContinuous+Integration">
+    <img src="https://github.com/edmolima/docdiff/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
+  </a>
+  <a href="https://crates.io/crates/docdiff">
+    <img src="https://img.shields.io/crates/v/docdiff.svg" alt="Crates.io" />
+  </a>
+  <a href="https://github.com/edmolima/docdiff/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/edmolima/docdiff.svg" alt="License: MIT" />
+  </a>
+</div>
 
 <div align="center">
   <img src="./docs/assets/docdiff.png" alt="Docdiff Brand" width="500px" />
