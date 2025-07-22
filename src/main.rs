@@ -1,9 +1,8 @@
-
 mod cli;
 mod utils;
-mod algorithm;
 
 use anyhow::Result;
+use docdiff::algorithm;
 
 fn main() -> Result<()> {
     let matches = cli::build_cli().get_matches();
