@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      release-type:
+        description: 'Release type (major, minor, patch)'
+        required: false
+        default: 'patch'
 
 jobs:
   release:
@@ -28,13 +34,36 @@ jobs:
         run: cargo fmt -- --check
       - name: Lint
         run: cargo clippy -- -D warnings
+      - name: Run tests
+        run: cargo test --all --verbose
+      - name: Generate code coverage
+        run: |
+          cargo install cargo-tarpaulin
+          cargo tarpaulin --out Xml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./tarpaulin-report.xml
+          fail_ci_if_error: true
       - name: Install cargo-release
         run: cargo install cargo-release
       - name: Run cargo-release (version bump, changelog, tag)
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
         run: |
-          cargo release --execute --no-publish
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            cargo release ${{ github.event.inputs.release-type }} --execute --no-publish;
+          else
+            cargo release --execute --no-publish;
+          fi
+      - name: Create GitHub Release with changelog
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to crates.io
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
