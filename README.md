@@ -2,7 +2,9 @@
 
 # Docdiff
 
-![Docdiff Brand](./docs/assets/docdiff.png)
+<div align="center">
+  <img src="./docs/assets/docdiff.png" alt="Docdiff Brand" width="500px" />
+</div>
 
 **Docdiff** is a fast, intuitive CLI for comparing two files using advanced document distance algorithms. Built for developers, data scientists, and anyone who needs reliable file comparison, Docdiff makes it effortless to spot differences and measure similarity between documents.
 
@@ -16,8 +18,6 @@
 - **Extensible**: Add new algorithms or commands with ease.
 - **Performance**: Built in Rust for speed and reliability.
 - **Clear Output**: Human-readable and machine-friendly results.
-
----
 
 ---
 
@@ -35,9 +35,6 @@ cargo install docdiff
 Download the latest release for your platform from [Releases](https://github.com/yourusername/docdiff/releases).
 
 ---
-
----
-
 
 ## Usage
 
@@ -62,9 +59,6 @@ docdiff diff --help
 
 ---
 
----
-
-
 ## Example Output
 
 ```sh
@@ -77,17 +71,11 @@ Comparison finished!
 
 ---
 
----
-
-
 ## Algorithms
 
 Docdiff uses advanced document distance algorithms. You can extend or customize algorithms by contributing to [`src/algorithms/`](src/algorithms/).
 
 ---
-
----
-
 
 ## Testing
 
@@ -99,8 +87,6 @@ cargo test
 
 ---
 
----
-
 
 ## Contributing
 
@@ -108,14 +94,9 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
 
 ---
 
----
-
-
 ## License
 
 Docdiff is licensed under the [MIT License](LICENSE).
-
----
 
 ---
 
