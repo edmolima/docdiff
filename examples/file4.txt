@@ -1,0 +1,2 @@
+Rust empowers everyone to build reliable and efficient software.
+Memory safety without garbage collection.
