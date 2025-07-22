@@ -1,6 +1,6 @@
 use assert_cmd::Command;
-use predicates::str::contains;
 use predicates::prelude::PredicateBooleanExt;
+use predicates::str::contains;
 
 #[test]
 fn diff_command_outputs_similarity_and_verdict() {
@@ -8,10 +8,12 @@ fn diff_command_outputs_similarity_and_verdict() {
     cmd.args(["diff", "examples/file1.txt", "examples/file2.txt"])
         .assert()
         .success()
-        .stdout(contains("Result:")
-            .and(contains("Document distance:"))
-            .and(contains("Similarity:"))
-            .and(contains("The files")));
+        .stdout(
+            contains("Result:")
+                .and(contains("Document distance:"))
+                .and(contains("Similarity:"))
+                .and(contains("The files")),
+        );
 }
 
 #[test]
