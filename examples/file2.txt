@@ -1,2 +1,1 @@
-Rust is a systems language designed for performance and reliability.
-It enables developers to create fast and safe applications.
+Rust
