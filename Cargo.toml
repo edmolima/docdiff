@@ -1,6 +1,6 @@
 [package]
 name = "docdiff"
-version = "1.1.0"
+version = "1.2.0"
 edition = "2024"
 authors = ["Edmo Lima <soedmolima@gmail.com>"]
 description = "A CLI tool for comparing two files using document distance algorithms."
