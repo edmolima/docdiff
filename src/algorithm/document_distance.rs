@@ -42,7 +42,8 @@ pub fn document_distance(a: &str, b: &str) -> f64 {
 
     let cosine_similarity = dot_product / (norm_a * norm_b);
 
-    (1.0 - cosine_similarity).max(0.0).min(1.0)
+    // FIX: Replaced .max().min() with .clamp() as suggested by the compiler.
+    (1.0 - cosine_similarity).clamp(0.0, 1.0)
 }
 
 fn get_word_frequencies(text: &str) -> HashMap<String, f64> {
